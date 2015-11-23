@@ -54,6 +54,14 @@ func ExampleCancelWatchString() {
 	// Output: watchable test string
 }
 
+func ExampleHasKey() {
+	e := exampleConfig{}
+	if e.Has("test") {
+		fmt.Printf("'test' is present")
+	}
+	// Output: 'test' is present
+}
+
 /// Example Congo Config
 
 type exampleConfig struct {
@@ -69,6 +77,13 @@ func (e *exampleConfig) GetValueLocation(key string) (ValueLocation, error) {
 
 func (e *exampleConfig) WatchValueChanges(key string, c chan Change, err chan error) (Watcher, error) {
 	return nil, nil
+}
+
+func (e *exampleConfig) Has(key string) bool {
+	if key == "test" {
+		return true
+	}
+	return false
 }
 
 func (e *exampleConfig) Get(key string, a interface{}) error {
