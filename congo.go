@@ -47,6 +47,9 @@ type Config interface {
 
 	WatchValueChanges(key string, c chan Change, err chan error) (Watcher, error)
 
+	// HasKey retorna true si `key` existe en el Config actual
+	Has(key string) bool
+
 	// Get popula `a` utilizando reflection para obtener los valores de un árbol de configuración
 	Get(key string, a interface{}) error
 	// Watch monitorea cambios en el valor de `key` populando instancias de `a` y enviándo error o nil a `c` cuando detecta cambios
